@@ -1,0 +1,200 @@
+/* Reset CSS */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  background-color: $black;
+  color: $white;
+  font-family: 'First-Lady-Sans-Text-OG', sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  font-size: 1vw;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased; // Enable antialiasing for WebKit browsers
+  -moz-osx-font-smoothing: grayscale; // Enable antialiasing for Firefox on macOS
+
+  ::selection {
+    background-color: $highlight; // Set your desired highlight background color
+    color: $black; // Set your desired highlight text color
+  }
+}
+
+/* First Name Last name Email +1 */
+
+header {
+  width: 100%;
+  //max-width: 1440px;
+  position: relative;
+  padding-bottom: 15%; // This sets the height to 15% of the width
+  margin: auto;
+  h1 {
+    width: 100%;
+    height: 100%; // Height is controlled by padding
+    top: 0;
+    position: absolute;
+    font-size: 1em;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+    text-indent: 100000px;
+    white-space: nowrap;
+    background-image: url('../images/FL-logo.svg');
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: contain; // Ensures the background image scales correctly
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center the .content horizontally
+  width: 100%;
+  margin: 0 auto; // Center the main element horizontally if it has a max-width
+  padding: 0;
+
+  .content {
+    display: flex;
+    flex-direction: column; // Ensure children are in column direction
+    margin: 0;
+    padding: 0;
+    padding-top: $basePadding;
+    position: relative;
+    font-size: 4.96em;
+
+    .info {
+      line-height: 1.2em;
+    }
+
+    .confirmation {
+      opacity: 0;
+      color: $highlight;
+      display: none;
+      transition: opacity 0.5s $ease;
+      position: absolute;
+      top: 50vw;
+    }
+    /* First Name Last name Email +1 */
+    form {
+      display: flex;
+      flex-direction: column;
+      transition: opacity 0.25s $ease;
+
+      label {
+        line-height: 1em;
+        margin-top: 1em;
+        transition: opacity 0.2s $ease;
+        will-change: opacity, transform; // Hint to the browser that these properties will change
+        transform: translateZ(0); // Force GPU rendering
+        &.error {
+          //color: $error;
+        }
+        &.set {
+          //opacity: 0.25;
+          //transition: opacity 0.3s ease-in-out;
+          //color: $highlight;
+        }
+      }
+      select,
+      input {
+        // reset
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $white;
+        color: $white;
+        font-size: 1em;
+        line-height: 1.5em;
+        transition: border 0.2s $ease;
+        //margin-bottom: $basePadding;
+        //margin: $basePadding 0;
+
+        option {
+          background-color: #000; // Background color for the options
+          color: $white; // Text color for the options
+          border-radius: 0%;
+          border: none;
+        }
+
+        &.error {
+          border-color: $error;
+        }
+
+        &:focus,
+        &:active {
+          outline: none; // Remove outline for select on focus and active
+          border-color: $highlight;
+        }
+      }
+
+      .submit {
+        background-color: $highlight;
+        color: $black;
+        padding: 1em 0;
+        margin: 1em 0;
+        cursor: pointer;
+        transition: all 0.15s $ease;
+
+        &:hover {
+          background-color: $white;
+          color: $black;
+        }
+      }
+
+      &.submitted {
+        .submit {
+          opacity: 0.25;
+          pointer-events: none;
+          cursor: none;
+        }
+      }
+    }
+  }
+
+  &.confirmed {
+    .content {
+      form {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+      .confirmation {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    .content {
+      font-size: 2.5em;
+      width: 55%;
+
+      .confirmation {
+        top: 25vw;
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+}
+
+/* THE END OF THE WORLD  HALLOWEEN BASH at the First Lady haunted house  in Gamla Stan Thursday 31/10 17-22   */
