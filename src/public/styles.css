@@ -1,0 +1,121 @@
+/* Reset CSS */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inner {
+  width: 54%;
+  max-width: 1440px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .info{
+    font-family: Arial, 'First Lady Sans Text', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 43px;
+    color: #FFFFFF;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"] {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1em;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    outline: none;
+    border-color: #00f;
+  }
+
+  button[type="submit"] {
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #333;
+  }
+
+  .error {
+    border-color: #f00;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  button[type="submit"] {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+}

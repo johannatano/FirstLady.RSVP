@@ -1,0 +1,63 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event RSVP</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="inner">
+    <h1>RSVP for Our Event</h1>
+    <p class="info">THE END OF THE WORLD HALLOWEEN BASH
+  at the First Lady haunted house in Gamla Stan
+  Thursday 31/10 17-22
+   </p>
+    <form id="rsvp-form">
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" name="first_name" required>
+      <label for="last_name">Last Name</label>
+      <input type="text" id="last_name" name="last_name" required>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+      <label for="plus_one">+1</label>
+      <input type="text" id="plus_one" name="plus_one" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Include JavaScript to handle form submission and redirection -->
+<script>
+  document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+  // Send the form data to Google Apps Script Web App
+    var data = {
+      name: 'johanna',
+      email: 'johanna.tano@gmail.com'
+    };
+    fetch('http://localhost:8000/api/macros/s/AKfycbwXiwCz20idd-h_Bgq9L0F6QD79L7oWeZCDb918ZxRkiLM5wCWYrW_UltqzC1Cst84K/exec', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+        },
+    })
+    .then(response => {
+        console.log('Raw Response:', response);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Parsed Data:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+</script>
+
+</body>
+</html>
