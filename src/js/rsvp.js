@@ -44,13 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
-
-    //showThankYou();
-    //return;
     let isValid = true;
-    // Remove existing error classes
     form.classList.remove('error');
-    // Check each required field
     form.querySelectorAll('[req]').forEach((input) => {
       if (!input.value.trim() || (input.type === 'email' && !input.value.includes('@'))) {
         isValid = false;
@@ -74,41 +69,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     form.classList.add('submitted');
-
-    //const form = event.target;
     const formData = new FormData(event.target);
     const plusOne = formData.get('plus_one');
-    //console.log('plusOne:', plusOne);
     formData.set('attendees', plusOne == 'yes' ? '2' : '1');
     formData.delete('plus_one');
-    // Send the form data to Google Apps Script Web App
-    // Send data to Google Apps Script
     try {
-      //APP EDIT: https://script.google.com/u/1/home/projects/1P69EkCIlNMkJtRT36NoHbetl-i9NCrvz1uLRcnhrOypMQdr2nogn8WFQ/edit?pli=1
-      //const WEBAPP_ID = 'AKfycbzbyO7UKQQbnszzT8dvT3eTx9fDqpuyo2pMZwK2Rq-kf7q-tucSy3QwdDfHJttOGkl5';
-      //const WEBAPP_ID = 'AKfycbwoS63a9ERr11Xz96WU9KBPa-1TOU0aSkNPVOd_fwdYYpu925lknKnC2IY5wXuR-31i';
-      //const WEBAPP_ID = 'AKfycbyAPEztDJ-bJURtMslhOUsu-VgUYofL0U7129gN3xMRdl4VWDb5S3SDw-D0OqL_N1E7';
       const WEBAPP_ID = 'AKfycbwj6XhzVXHA0d1OrbKGqoyrwn4p7YSBPkrprsjULRUBJgAP8ovjfw90JfV0ULf_nv5L';
-      //AKfycbwj6XhzVXHA0d1OrbKGqoyrwn4p7YSBPkrprsjULRUBJgAP8ovjfw90JfV0ULf_nv5L;
-      //const proxy = 'http://46.101.86.155:8000/api';
-      const proxy = 'http://46.101.86.155:8000/';
-      //const proxy = 'http://localhost:8000/api';
-      //const URL = 'https://script.google.com/macros/s/' + WEBAPP_ID + '/exec';
+      const proxy = 'https://atomic-operations.com/cors-proxy/';
       const URL = proxy + 'https://script.google.com/macros/s/' + WEBAPP_ID + '/exec';
       const response = await fetch(URL, {
         method: 'POST',
         body: formData,
       });
       const parsedData = await response.json();
-      //console.log('Parsed Data:', parsedData);
       if (parsedData.status === 'success') {
         showThankYou();
       } else {
         showErrorMessage();
       }
     } catch (error) {
-      //console.error('Error:', error);
+      showErrorMessage();
     }
-    //console.log('Form Submitted');
   });
 });
