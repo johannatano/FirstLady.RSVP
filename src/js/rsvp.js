@@ -85,12 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Send data to Google Apps Script
     try {
       const WEBAPP_ID = 'AKfycbzbyO7UKQQbnszzT8dvT3eTx9fDqpuyo2pMZwK2Rq-kf7q-tucSy3QwdDfHJttOGkl5';
-      const proxy = 'http://localhost:8000/api';
+      const proxy = 'http://46.101.86.155:8000/api';
+      //const proxy = 'http://localhost:8000/api';
       //const URL = 'https://script.google.com/macros/s/' + WEBAPP_ID + '/exec';
       const URL = proxy + '/macros/s/' + WEBAPP_ID + '/exec';
       const response = await fetch(URL, {
         method: 'POST',
         body: formData,
+        mode: 'no-cors',
       });
       const parsedData = await response.json();
       console.log('Parsed Data:', parsedData);
